@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser History Manager – DSA Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Inline SVG icons only — no icon library -->
+</head>
+<body>
+  <div id="app-container">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════════════════════ -->
+    <aside id="sidebar">
+
+      <div class="sidebar-header">
+        <!-- Browser / History logo icon -->
+        <span class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </span>
+        <div>
+          <h1 class="app-title">Browser History</h1>
+          <span class="app-subtitle">Manager</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <ul>
+          <li>
+            <a href="#" class="nav-link active" data-section="dashboard" aria-current="page">
+              <!-- Dashboard icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-section="history">
+              <!-- History / Clock icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              All History
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-section="back-stack">
+              <!-- Stack layers icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+              Back Stack
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-section="forward-stack">
+              <!-- Stack layers icon (forward) -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+              Forward Stack
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-section="linked-list">
+              <!-- Chain / Link icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Linked List Viz
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-section="hashmap">
+              <!-- Grid / Hash icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="9" x2="20" y2="9"/>
+                <line x1="4" y1="15" x2="20" y2="15"/>
+                <line x1="10" y1="3" x2="8" y2="21"/>
+                <line x1="16" y1="3" x2="14" y2="21"/>
+              </svg>
+              HashMap Explorer
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-section="about">
+              <!-- Info icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              About Project
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span>v1.0.0 · DSA Project 2026</span>
+      </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════════════════════ -->
+    <div id="main-content">
+
+      <!-- TOP HEADER ─────────────────────────────────────────── -->
+      <header id="top-header">
+        <div class="header-left">
+          <button id="menu-toggle" class="icon-btn" aria-label="Toggle menu" title="Toggle Sidebar">
+            <!-- Hamburger icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="6"  x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <div class="search-wrapper" role="search">
+            <span class="search-icon" aria-hidden="true">
+              <!-- Search icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </span>
+            <input type="text" id="search-input" placeholder="Search history..." autocomplete="off" aria-label="Search history">
+          </div>
+        </div>
+        <div class="header-right">
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
+            <span id="theme-icon">
+              <!-- Sun icon (default light mode) -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1"  x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22"  x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1"  y1="12" x2="3"  y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+            </span>
+          </button>
+          <button id="clear-history-btn" class="btn btn-danger">
+            <!-- Trash icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+              <path d="M10 11v6"/>
+              <path d="M14 11v6"/>
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+            </svg>
+            Clear History
+          </button>
+        </div>
+      </header>
+
+      <!-- SEARCH RESULTS DROPDOWN ────────────────────────────── -->
+      <div id="search-results" class="search-results-panel" style="display:none;" role="listbox" aria-label="Search results"></div>
+
+      <!-- VISIT SECTION (always visible) ──────────────────────── -->
+      <div id="visit-section">
+        <div class="visit-card">
+          <div class="url-bar-row">
+            <div class="nav-buttons">
+              <button id="back-btn" class="nav-btn" disabled title="Go Back" aria-label="Go back">
+                <!-- Left arrow icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="19" y1="12" x2="5" y2="12"/>
+                  <polyline points="12 19 5 12 12 5"/>
+                </svg>
+              </button>
+              <button id="forward-btn" class="nav-btn" disabled title="Go Forward" aria-label="Go forward">
+                <!-- Right arrow icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </button>
+            </div>
+            <input type="url" id="url-input" placeholder="Enter URL (e.g. google.com)" autocomplete="off" aria-label="URL to visit">
+            <input type="text" id="title-input" placeholder="Page title (optional)" autocomplete="off" aria-label="Page title (optional)">
+            <button id="visit-btn" class="btn btn-primary">
+              <!-- Globe icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              Visit
+            </button>
+          </div>
+          <div id="current-page-display" class="current-page-info">
+            <span class="current-page-label">Current Page:</span>
+            <span id="current-page-title" class="current-page-title">No page visited</span>
+            <span id="current-page-url" class="current-page-url"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTIFICATION CONTAINER ────────────────────────────── -->
+      <div id="notification-container" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTIONS
+      ═══════════════════════════════════════════════════════ -->
+
+      <!-- DASHBOARD ──────────────────────────────────────────── -->
+      <section id="section-dashboard" class="section active" aria-labelledby="dashboard-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="dashboard-heading">Dashboard</h2>
+          <p class="section-subtitle">Overview of your browsing session</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card stat-purple">
+            <div class="stat-icon">
+              <!-- History icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="stat-value" id="total-visits">0</div>
+            <div class="stat-label">Total Visits</div>
+          </div>
+          <div class="stat-card stat-green">
+            <div class="stat-icon">
+              <!-- Link icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
+            <div class="stat-value" id="unique-urls">0</div>
+            <div class="stat-label">Unique URLs</div>
+          </div>
+          <div class="stat-card stat-orange">
+            <div class="stat-icon">
+              <!-- Back (left arrow) icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+              </svg>
+            </div>
+            <div class="stat-value" id="back-stack-size">0</div>
+            <div class="stat-label">Back Stack Size</div>
+          </div>
+          <div class="stat-card stat-blue">
+            <div class="stat-icon">
+              <!-- Forward (right arrow) icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+            <div class="stat-value" id="forward-stack-size">0</div>
+            <div class="stat-label">Forward Stack Size</div>
+          </div>
+        </div>
+
+        <!-- Recent History + Most Visited previews -->
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3 class="card-title">Recent History</h3>
+            <div id="recent-history-preview"></div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Most Visited</h3>
+            <div id="most-visited-preview"></div>
+          </div>
+        </div>
+
+        <!-- DSA Status Cards -->
+        <div class="dsa-status-grid">
+          <div class="dsa-status-card">
+            <h4>Stack Status</h4>
+            <div id="stack-status-info"></div>
+          </div>
+          <div class="dsa-status-card">
+            <h4>Linked List Status</h4>
+            <div id="ll-status-info"></div>
+          </div>
+          <div class="dsa-status-card">
+            <h4>HashMap Status</h4>
+            <div id="hm-status-info"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALL HISTORY ─────────────────────────────────────────── -->
+      <section id="section-history" class="section" aria-labelledby="history-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="history-heading">All History</h2>
+          <p class="section-subtitle">Complete browsing history (most recent first)</p>
+        </div>
+        <div id="history-list-container"></div>
+      </section>
+
+      <!-- BACK STACK ─────────────────────────────────────────── -->
+      <section id="section-back-stack" class="section" aria-labelledby="back-stack-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="back-stack-heading">Back Stack</h2>
+          <p class="section-subtitle">Stack data structure — Back navigation history</p>
+        </div>
+        <div class="stack-info-banner">
+          <span class="badge badge-info">LIFO — Last In, First Out</span>
+          <span class="stack-operations-info">push() O(1) · pop() O(1) · peek() O(1)</span>
+        </div>
+        <div id="back-stack-container" class="stack-viz-container"></div>
+      </section>
+
+      <!-- FORWARD STACK ──────────────────────────────────────── -->
+      <section id="section-forward-stack" class="section" aria-labelledby="forward-stack-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="forward-stack-heading">Forward Stack</h2>
+          <p class="section-subtitle">Stack data structure — Forward navigation history</p>
+        </div>
+        <div class="stack-info-banner">
+          <span class="badge badge-info">LIFO — Last In, First Out</span>
+          <span class="stack-operations-info">push() O(1) · pop() O(1) · peek() O(1)</span>
+        </div>
+        <div id="forward-stack-container" class="stack-viz-container"></div>
+      </section>
+
+      <!-- LINKED LIST VISUALIZATION ──────────────────────────── -->
+      <section id="section-linked-list" class="section" aria-labelledby="linked-list-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="linked-list-heading">Linked List Visualization</h2>
+          <p class="section-subtitle">Doubly Linked List — Browsing History Timeline</p>
+        </div>
+        <div class="ll-info-bar">
+          <div class="ll-stats">
+            <span>Nodes: <strong id="ll-node-count">0</strong></span>
+            <span>Head: <strong id="ll-head-label">—</strong></span>
+            <span>Tail: <strong id="ll-tail-label">—</strong></span>
+          </div>
+          <div class="ll-controls">
+            <button id="traverse-forward-btn" class="btn btn-secondary btn-sm">
+              <!-- Right arrow small -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+              Forward Traverse
+            </button>
+            <button id="traverse-backward-btn" class="btn btn-secondary btn-sm">
+              <!-- Left arrow small -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+              </svg>
+              Backward Traverse
+            </button>
+          </div>
+        </div>
+        <div id="linked-list-viz" class="linked-list-viz-container" role="img" aria-label="Linked list visualization"></div>
+        <div id="traversal-output" class="traversal-output" aria-live="polite"></div>
+      </section>
+
+      <!-- HASHMAP EXPLORER ───────────────────────────────────── -->
+      <section id="section-hashmap" class="section" aria-labelledby="hashmap-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="hashmap-heading">HashMap Explorer</h2>
+          <p class="section-subtitle">Custom HashMap with separate chaining — URL Index</p>
+        </div>
+        <div class="hm-info-bar">
+          <div class="hm-stats">
+            <span>Buckets: <strong>53</strong></span>
+            <span>Entries: <strong id="hm-entry-count">0</strong></span>
+            <span>Load Factor: <strong id="hm-load-factor">0.00</strong></span>
+          </div>
+          <div class="hm-controls">
+            <label class="toggle-label">
+              <input type="checkbox" id="show-all-buckets">
+              Show all buckets
+            </label>
+            <input type="text" id="hm-search-input" placeholder="Hash a key..." class="hm-search" aria-label="Key to hash">
+            <button id="hm-search-btn" class="btn btn-secondary btn-sm">Hash it</button>
+          </div>
+        </div>
+        <div id="hm-hash-result" class="hm-hash-result" aria-live="polite"></div>
+        <div id="hashmap-viz" class="hashmap-viz-container"></div>
+      </section>
+
+      <!-- ABOUT PROJECT ──────────────────────────────────────── -->
+      <section id="section-about" class="section" aria-labelledby="about-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="about-heading">About Project</h2>
+          <p class="section-subtitle">DSA Concepts, Architecture &amp; Project Details</p>
+        </div>
+
+        <!-- Hero Card -->
+        <div class="about-hero-card">
+          <div class="about-hero-content">
+            <h3>Browser History Manager</h3>
+            <p>A web-based application demonstrating Stack, Doubly Linked List, and HashMap through an interactive browser history simulation.</p>
+            <div class="about-tags">
+              <span class="badge badge-accent">Stack</span>
+              <span class="badge badge-accent">Doubly Linked List</span>
+              <span class="badge badge-accent">HashMap</span>
+              <span class="badge badge-accent">Vanilla JS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Card -->
+        <div class="about-student-card">
+          <div>
+            <div class="student-avatar">SK</div>
+          </div>
+          <div>
+            <h4>Shivam Kumar</h4>
+            <p>B.Tech Computer Science</p>
+            <p>DSA Project · 2026</p>
+          </div>
+        </div>
+
+        <!-- DSA Concepts -->
+        <h3 class="dsa-section-title">DSA Concepts Used</h3>
+        <div class="dsa-concepts-grid">
+
+          <div class="concept-card">
+            <div class="concept-icon concept-purple">
+              <!-- Stack icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </div>
+            <h4>Stack (LIFO)</h4>
+            <p>A linear data structure where elements are added and removed from the same end (top). Used for Back and Forward navigation — just like a real browser.</p>
+            <div class="complexity-mini">
+              <span>Push: O(1)</span><span>Pop: O(1)</span><span>Peek: O(1)</span>
+            </div>
+          </div>
+
+          <div class="concept-card">
+            <div class="concept-icon concept-green">
+              <!-- Linked list / chain icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
+            <h4>Doubly Linked List</h4>
+            <p>Each node has a pointer to both its previous and next node. Maintains the complete history timeline with O(1) insertion and efficient bidirectional traversal.</p>
+            <div class="complexity-mini">
+              <span>Insert: O(1)</span><span>Delete: O(n)</span><span>Search: O(n)</span>
+            </div>
+          </div>
+
+          <div class="concept-card">
+            <div class="concept-icon concept-blue">
+              <!-- Hash / grid icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="9"  x2="20" y2="9"/>
+                <line x1="4" y1="15" x2="20" y2="15"/>
+                <line x1="10" y1="3" x2="8"  y2="21"/>
+                <line x1="16" y1="3" x2="14" y2="21"/>
+              </svg>
+            </div>
+            <h4>HashMap</h4>
+            <p>Key-value store with O(1) average lookup. Uses a polynomial hash function and separate chaining to handle collisions. Stores URL metadata for instant search.</p>
+            <div class="complexity-mini">
+              <span>Get: O(1) avg</span><span>Set: O(1) avg</span><span>Delete: O(1) avg</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Time Complexity Table -->
+        <h3 class="dsa-section-title">Time Complexity Reference</h3>
+        <div class="table-wrapper">
+          <table class="complexity-table">
+            <thead>
+              <tr>
+                <th>Operation</th>
+                <th>Data Structure</th>
+                <th>Time Complexity</th>
+                <th>Space Complexity</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Visit Page (Push)</td>
+                <td>Stack</td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Add to back stack top</td>
+              </tr>
+              <tr>
+                <td>Go Back (Pop)</td>
+                <td>Stack</td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Remove from stack top</td>
+              </tr>
+              <tr>
+                <td>Peek Current</td>
+                <td>Stack</td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>View top without removing</td>
+              </tr>
+              <tr>
+                <td>Add to History</td>
+                <td>Doubly Linked List</td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Insert at tail</td>
+              </tr>
+              <tr>
+                <td>Delete Entry</td>
+                <td>Doubly Linked List</td>
+                <td><span class="complexity-badge on">O(n)</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Find then unlink node</td>
+              </tr>
+              <tr>
+                <td>Traversal</td>
+                <td>Doubly Linked List</td>
+                <td><span class="complexity-badge on">O(n)</span></td>
+                <td><span class="complexity-badge on">O(n)</span></td>
+                <td>Visit all nodes</td>
+              </tr>
+              <tr>
+                <td>URL Lookup</td>
+                <td>HashMap</td>
+                <td><span class="complexity-badge o1">O(1) avg</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Hash + bucket access</td>
+              </tr>
+              <tr>
+                <td>Insert URL</td>
+                <td>HashMap</td>
+                <td><span class="complexity-badge o1">O(1) avg</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Hash and store</td>
+              </tr>
+              <tr>
+                <td>Delete URL</td>
+                <td>HashMap</td>
+                <td><span class="complexity-badge o1">O(1) avg</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Hash and remove</td>
+              </tr>
+              <tr>
+                <td>Search History</td>
+                <td>HashMap</td>
+                <td><span class="complexity-badge on">O(n)</span></td>
+                <td><span class="complexity-badge ok">O(k)</span></td>
+                <td>Scan all entries for match</td>
+              </tr>
+              <tr>
+                <td>Clear History</td>
+                <td>All</td>
+                <td><span class="complexity-badge on">O(n)</span></td>
+                <td><span class="complexity-badge o1">O(1)</span></td>
+                <td>Reset all structures</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Architecture -->
+        <h3 class="dsa-section-title">Project Architecture</h3>
+        <div class="architecture-card">
+          <div class="arch-layer">
+            <div class="arch-label">Presentation Layer</div>
+            <div class="arch-content">index.html + style.css · Semantic HTML5 · CSS3 Variables · Responsive Grid</div>
+          </div>
+          <div class="arch-arrow" aria-hidden="true">↓</div>
+          <div class="arch-layer">
+            <div class="arch-label">Application Layer</div>
+            <div class="arch-content">script.js · Event Listeners · Render Functions · State Management · localStorage Persistence</div>
+          </div>
+          <div class="arch-arrow" aria-hidden="true">↓</div>
+          <div class="arch-layer">
+            <div class="arch-label">Data Structure Layer</div>
+            <div class="arch-content">Stack class · DoublyLinkedList class · HashMap class · All custom-implemented in JavaScript</div>
+          </div>
+        </div>
+
+        <!-- Presentation Summary -->
+        <h3 class="dsa-section-title">Project Presentation Summary</h3>
+        <div class="card presentation-card">
+          <p><strong>Objective:</strong> Implement and demonstrate Stack, Doubly Linked List, and HashMap through a functional browser history simulation.</p>
+          <p><strong>Stack Application:</strong> Back navigation uses a stack (LIFO). Visiting a new page pushes the current page; clicking Back pops from the Back Stack and pushes to the Forward Stack.</p>
+          <p><strong>Linked List Application:</strong> Every visited URL is stored as a node in a doubly linked list, maintaining a complete chronological history with O(1) insertion. Nodes can be traversed forward (oldest→newest) or backward (newest→oldest).</p>
+          <p><strong>HashMap Application:</strong> Each URL maps to its metadata (title, visit count, last visited). The custom hash function distributes keys across 53 buckets with separate chaining for collision handling, giving O(1) average search time.</p>
+          <p><strong>Key Insight:</strong> These three structures complement each other — the HashMap provides O(1) lookup, the Linked List maintains order, and the Stacks manage navigation state — mirroring how real browsers work internally.</p>
+        </div>
+
+      </section>
+
+    </div><!-- end #main-content -->
+  </div><!-- end #app-container -->
+
+  <!-- FOOTER ────────────────────────────────────────────────── -->
+  <footer id="app-footer">
+    <span>Browser History Manager · DSA Project 2026</span>
+    <span>Developed by <strong>Shivam Kumar</strong></span>
+    <span>Stack · Doubly Linked List · HashMap</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
